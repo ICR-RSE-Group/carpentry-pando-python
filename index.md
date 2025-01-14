@@ -9,7 +9,7 @@ alt='Performance Profiling & Optimisation (Python) Training'
 style='padding: 2%'}
 -->
 
-**Welcome to Performance Profiling & Optimisation (Python) Training!**
+**Welcome to Performance Python Optimisation and Profiling Training!**
 
 The training curriculum for this course is designed for researchers that are writing Python and lack formal computer science training. The curriculum covers how to assess where time is being spent during execution of a Python program, it also provides a high level understanding of how code executes and how this maps to the limiting factors of performance and good practice.
 
