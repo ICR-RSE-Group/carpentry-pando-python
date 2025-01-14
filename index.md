@@ -36,6 +36,7 @@ After attending this training, participants will be able to:
 - recognise and implement optimisations for common limiting factors of performance.
 - identify the most expensive functions and lines of code using `cprofile` and `line_profiler`.
 - evaluate code to determine the limiting factors of its performance.
+
 ::::::::::::::::::::::::::::::::::::::::::  prereq
 
 ## Prerequisites
