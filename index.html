@@ -274,7 +274,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="long-break1.html">7. Break</a>
+        <a href="long-break1.html">7. Lunch Break</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -402,10 +402,16 @@ early afternoon.</p>
 performance.</li>
 <li>identify the most expensive functions and lines of code using
 <code>cprofile</code> and <code>line_profiler</code>.</li>
-<li>evaluate code to determine the limiting factors of its performance.
-:::::::::::::::::::::::::::::::::::::::::: prereq</li>
-</ul></section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a></h2>
-<hr class="half-width"><p>Before joining Python Optimisation and Performance Profiling
+<li>evaluate code to determine the limiting factors of its
+performance.</li>
+</ul><div id="prerequisites" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="prerequisites" class="callout-inner">
+<h3 class="callout-title">Prerequisites</h3>
+<div class="callout-content">
+<p>Before joining Python Optimisation and Performance Profiling
 Training, participants should be able to:</p>
 <ul><li>implement basic algorithms in Python.</li>
 <li>follow the control flow of Python code, and dry run the execution in
@@ -414,7 +420,9 @@ their head or on paper.</li>
 novice carpentry</a> for another course to help with learning these
 skills.
 <!-- TODO: could make a dedicated page (like https://carpentries.github.io/lesson-development-training/markdown-github-primer.html) that highlights specific courses/resources. --></p>
-<p>::::::::::::::::::::::::::::::::::::::::::::::::::</p>
+</div>
+</div>
+</div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -442,16 +450,22 @@ environment.</p>
 course, this can be done with your preferred Python environment manager
 (e.g. <code>conda</code>, <code>pipenv</code>), the required packages
 can all be installed via <code>pip</code>.</p>
-<!-- conda create -n pando python
-     conda activate pando -->
+<p>To create a new Anaconda environment named <code>py311_env</code>
+with Python 3.11, use the following command for conda:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>     <span class="ex">conda</span> create <span class="at">--name</span> py311_env python=3.11</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>     <span class="ex">conda</span> activate py311_env</span></code></pre>
+</div>
 <p>The non-core Python packages required by the course are
 <code>pytest</code>, <code>snakeviz</code>, <code>line_profiler</code>,
 <code>numpy</code>, <code>pandas</code> and <code>matplotlib</code>
 which can be installed via <code>pip</code>.</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">pip</span> install pytest snakeviz line_profiler<span class="pp">[</span><span class="ss">all</span><span class="pp">]</span> numpy pandas matplotlib</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pip</span> install pytest snakeviz line_profiler<span class="pp">[</span><span class="ss">all</span><span class="pp">]</span> numpy pandas matplotlib</span></code></pre>
 </div>
 <p>To complete some of the exercises you will need to use a text-editor
 or Python IDE, so make sure you have your favourite available.</p>
@@ -468,16 +482,16 @@ or Python IDE, so make sure you have your favourite available.</p>
 <p>If you are unable to install <code>line_profiler</code> via
 <code>pip</code> on MacOS. Instead it can be installed via
 <code>conda</code>.</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">conda</span> install line_profiler</span></code></pre>
-</div>
-<p>It may first be necessary to enable conda-forge.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">conda</span> install line_profiler</span></code></pre>
+</div>
+<p>It may first be necessary to enable conda-forge.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span></code></pre>
 </div>
 </div>
 </div>
@@ -542,15 +556,15 @@ any links that you are not going to use.
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://icr-rse-group.github.io/carpentry-pando-python/index.html",
+  "@id": "https://ICR-RSE-Group.github.io/carpentry-pando-python/index.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "python, profiling, optimisation, data structures, algorithms",
   "name": "Python Optimisation and Performance Profiling",
   "creativeWorkStatus": "active",
-  "url": "https://icr-rse-group.github.io/carpentry-pando-python/index.html",
-  "identifier": "https://icr-rse-group.github.io/carpentry-pando-python/index.html",
+  "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/index.html",
+  "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/index.html",
   "dateCreated": "2024-02-01",
   "dateModified": "2025-01-14",
   "datePublished": "2025-01-14"

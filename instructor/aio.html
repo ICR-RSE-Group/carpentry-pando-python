@@ -324,7 +324,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="long-break1.html">7. Break</a>
+        <a href="long-break1.html">7. Lunch Break</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -441,7 +441,7 @@
         
 <section id="aio-optimisation-introduction"><p>Content from <a href="optimisation-introduction.html">Introduction to Optimisation</a></p>
 <hr>
-<p>Last updated on 2025-01-08 |
+<p>Last updated on 2025-01-14 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/optimisation-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -477,16 +477,19 @@ optimisation</li>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<!-- Enable you to look at hotspots identified by compiler, identify whether it's efficient --><p>Now that you’re able to find the most expensive components of your
-code with profiling, it becomes time to learn how to identify whether
-that expense is reasonable.</p>
+<!-- Changing the narrative: you'd better learn how to write a good code an what are the good practice --><p>Think about optimization as the first step on your journey to writing
+high-performance code. It’s like a race: the faster you can go without
+taking unnecessary detours, the better. Code optmisation is all about
+understanding the principles of efficiency in Python and being conscious
+of how small changes can yield massive improvements.</p>
 <!-- Necessary to understand how code executes (to a degree) -->
-<p>In order to optimise code for performance, it is necessary to have an
-understanding of what a computer is doing to execute it.</p>
+<p>These are the first steps in code optimization: making better choices
+as you write your code and have an understanding of what a computer is
+doing to execute it.</p>
 <!-- Goal is to give you a high level understanding of how your code executes. You don't need to be an expert, even a vague general understanding will leave you in a stronger position. -->
-<p>Even a high-level understanding of how you code executes, such as how
+<p>A high-level understanding of how your code executes, such as how
 Python and the most common data-structures and algorithms are
-implemented, can help you to identify suboptimal approaches when
+implemented, can help you identify suboptimal approaches when
 programming. If you have learned to write code informally out of
 necessity, to get something to work, it’s not uncommon to have collected
 some bad habits along the way.</p>
@@ -496,7 +499,8 @@ transferable to the vast majority of programming languages. This is
 because the hardware architecture, data-structures and algorithms used
 are common to many languages and they hold some of the greatest
 influence over performance bottlenecks.</p>
-</section><section><h2 class="section-heading" id="premature-optimisation">Premature Optimisation<a class="anchor" aria-label="anchor" href="#premature-optimisation"></a>
+</section><section><h2 class="section-heading" id="optimising-code-from-scratch-trade-off-between-performance-and-maintainability">Optimising code from scratch: trade-off between performance and
+maintainability<a class="anchor" aria-label="anchor" href="#optimising-code-from-scratch-trade-off-between-performance-and-maintainability"></a>
 </h2>
 <hr class="half-width">
 <blockquote>
@@ -511,9 +515,6 @@ opportunities in that critical 3%. - Donald Knuth</p>
 <p>This classic quote among computer scientists states; when considering
 optimisation it is important to focus on the potential impact, both to
 the performance and maintainability of the code.</p>
-<p>Profiling is a valuable tool in this cause. Should effort be expended
-to optimise a component which occupies 1% of the runtime? Or would that
-time be better spent focusing on the most expensive components?</p>
 <p>Advanced optimisations, mostly outside the scope of this course, can
 increase the cost of maintenance by obfuscating what code is doing. Even
 if you are a solo-developer working on private code, your future self
@@ -522,13 +523,14 @@ should be able to easily comprehend your implementation.</p>
 maintainability should be considered when optimising code.</p>
 <p>This is not to say, don’t consider performance when first writing
 code. The selection of appropriate algorithms and data-structures
-covered in this course form good practice, simply don’t fret over a need
-to micro-optimise every small component of the code that you write.</p>
-</section><section><h2 class="section-heading" id="ensuring-reproducible-results">Ensuring Reproducible Results<a class="anchor" aria-label="anchor" href="#ensuring-reproducible-results"></a>
+covered in this course form a good practice, simply don’t fret over a
+need to micro-optimise every small component of the code that you
+write.</p>
+</section><section><h2 class="section-heading" id="ensuring-reproducible-results-when-optimising-an-existing-code">Ensuring Reproducible Results when optimising an existing code<a class="anchor" aria-label="anchor" href="#ensuring-reproducible-results-when-optimising-an-existing-code"></a>
 </h2>
 <hr class="half-width">
-<!-- This is also good practice when optimising your code, to ensure mistakes aren't made --><p>When optimising your code, you are making speculative changes. It’s
-easy to make mistakes, many of which can be subtle. Therefore, it’s
+<!-- This is also good practice when optimising your code, to ensure mistakes aren't made --><p>When optimising an existing code, you are making speculative changes.
+It’s easy to make mistakes, many of which can be subtle. Therefore, it’s
 important to have a strategy in place to check that the outputs remain
 correct.</p>
 <p>Testing is hopefully already a seamless part of your research
@@ -718,7 +720,7 @@ a list or array</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>The important information for students to learn within this episode
 are the patterns demonstrated via the benchmarks.</p>
@@ -1019,7 +1021,7 @@ duplicates <code>int(N/2)</code> affect performance?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1047,7 +1049,7 @@ comprehension.</em></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Constructing a set by passing in a single list is the clear
 winner.</p>
@@ -2614,9 +2616,9 @@ objects can improve performance.</li>
 </ul>
 </div>
 </div>
-</div></section><section id="aio-long-break1"><p>Content from <a href="long-break1.html">Break</a></p>
+</div></section><section id="aio-long-break1"><p>Content from <a href="long-break1.html">Lunch Break</a></p>
 <hr>
-<p>Last updated on 2025-01-08 |
+<p>Last updated on 2025-01-14 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/long-break1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
@@ -2670,7 +2672,12 @@ why</li>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<!-- Profiling is (what) --><p>Performance profiling is the process of analysing and measuring the
+<!-- what if my code is not performnant --><p>But what if, despite your best efforts, performance still isn’t up to
+par? This is where profiling comes into play — and it’s a game-changer.
+You can’t always guess what’s slow. Profiling helps you see hidden
+inefficiencies that might be buried deep within the code.</p>
+<!-- Profiling is (what) -->
+<p>Performance profiling is the process of analysing and measuring the
 performance of a program or script, to understand where time is being
 spent during execution.</p>
 <!-- It can be used for (where) -->
@@ -3828,7 +3835,7 @@ installed via pip.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Mac OS </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If you are unable to install <code>line_profiler</code> via
 <code>pip</code> on MacOS. Instead it can be installed via
@@ -4191,7 +4198,7 @@ number of elements to be sorted.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <ul>
 <li>Remember that the code needs to be moved into a method decorated
@@ -4211,7 +4218,7 @@ with <code>@profile</code>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If you chose to profile the whole code, it may look like this:</p>
 <div class="codewrapper sourceCode" id="cb17">
@@ -4313,7 +4320,7 @@ we are unlikely to be able to improve it further.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Download the pre-generated <code>line_profiler</code> output, this
 can be opened be to save waiting for the profiler.</p>
@@ -4351,7 +4358,7 @@ how it might be optimised.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <ul>
 <li>Remember that the function needs to be decorated with
@@ -4373,7 +4380,7 @@ number of steps <code>predprey.py:305</code>.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>First the function must be decorated</p>
 <div class="codewrapper sourceCode" id="cb21">
@@ -4635,15 +4642,15 @@ representative of a realistic run.</li>
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://icr-rse-group.github.io/carpentry-pando-python/instructor/aio.html",
+  "@id": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/aio.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "python, profiling, optimisation, data structures, algorithms",
   "name": "All in One View",
   "creativeWorkStatus": "active",
-  "url": "https://icr-rse-group.github.io/carpentry-pando-python/instructor/aio.html",
-  "identifier": "https://icr-rse-group.github.io/carpentry-pando-python/instructor/aio.html",
+  "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/aio.html",
+  "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/aio.html",
   "dateCreated": "2024-02-01",
   "dateModified": "2025-01-14",
   "datePublished": "2025-01-14"
