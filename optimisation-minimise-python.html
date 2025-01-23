@@ -376,7 +376,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Understanding Python (NumPy/Pandas)</h1>
-        <p>Last updated on 2025-01-08 |
+        <p>Last updated on 2025-01-23 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/optimisation-minimise-python.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -420,7 +420,7 @@ data.</li>
 Python source code to an intermediate bytecode. This bytecode is then
 interpreted in software at runtime generating instructions for the
 processor as necessary. This interpretation stage, and other features of
-the language, harm the performance of Python (whilst improving it’s
+the language, harm the performance of Python (whilst improving its
 usability).<!-- https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/ --></p>
 <p>In comparison, many languages such as C/C++ compile directly to
 machine code. This allows the compiler to perform low-level
@@ -434,12 +434,12 @@ languages to expose this performance.</p>
 <p>A simple example of this would be to perform a linear search of a
 list (in the previous episode we did say this is not recommended). The
 below example creates a list of 2500 integers in the inclusive-exclusive
-range <code>[0, 5000)</code>. It then searches for all of the even
-numbers in that range. <code>searchlistPython()</code> is implemented
-manually, iterating <code>ls</code> checking each individual item in
-Python code. <code>searchListC()</code> in contrast uses the
-<code>in</code> operator to perform each search, which allows CPython to
-implement the inner loop in it’s C back-end.</p>
+range <code>[0, 5000)</code>. It then searches for all the even numbers
+in that range. <code>searchlistPython()</code> is implemented manually,
+iterating <code>ls</code> checking each individual item in Python code.
+<code>searchListC()</code> in contrast uses the <code>in</code> operator
+to perform each search, which allows CPython to implement the inner loop
+in it’s C back-end.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -730,7 +730,7 @@ Return the sum of all items</li>
 <div class="callout-content">
 <p>The built-in functions <a href="https://docs.python.org/3/library/functions.html#filter" class="external-link"><code>filter()</code></a>
 and <a href="https://docs.python.org/3/library/functions.html#map" class="external-link"><code>map()</code></a>
-can be used for processing iterables However list-comprehension is
+can be used for processing iterables. However, list-comprehension is
 likely to be more performant.</p>
 <!-- Would this benefit from an example? -->
 </div>
@@ -739,15 +739,15 @@ likely to be more performant.</p>
 </section><section><h2 class="section-heading" id="using-numpy-effectively">Using NumPy (Effectively)<a class="anchor" aria-label="anchor" href="#using-numpy-effectively"></a></h2>
 <hr class="half-width"><p><a href="https://numpy.org/" class="external-link">NumPy</a> is a commonly used package for
 scientific computing, which provides a wide variety of methods.</p>
-<p>It adds restriction via it’s own <a href="https://numpy.org/doc/stable/user/basics.types.html" class="external-link">basic numeric
+<p>It adds restriction via its own <a href="https://numpy.org/doc/stable/user/basics.types.html" class="external-link">basic numeric
 types</a>, and static arrays to enable even greater performance than
-that of core Python. However if these restrictions are ignored, the
+that of core Python. However, if these restrictions are ignored, the
 performance can become significantly worse.</p>
 <div class="section level3">
 <h3 id="arrays">Arrays<a class="anchor" aria-label="anchor" href="#arrays"></a></h3>
 <p>NumPy’s arrays (not to be confused with the core Python
 <code>array</code> package) are static arrays. Unlike core Python’s
-lists, they do not dynamically resize. Therefore if you wish to append
+lists, they do not dynamically resize. Therefore, if you wish to append
 to a NumPy array, you must call <code>resize()</code> first. If you
 treat this like <code>append()</code> for a Python list, resizing for
 each individual append you will be performing significantly more copies
@@ -879,10 +879,10 @@ your code, and is more difficult to use incorrectly.</p>
 </div>
 <div class="section level3">
 <h3 id="vectorisation">Vectorisation<a class="anchor" aria-label="anchor" href="#vectorisation"></a></h3>
-<p>The manner by which NumPy stores data in arrays enables it’s
-functions to utilise vectorisation, whereby the processor executes one
-instruction across multiple variables simultaneously, for every
-mathematical operation between arrays.</p>
+<p>The manner by which NumPy stores data in arrays enables its functions
+to utilise vectorisation, whereby the processor executes one instruction
+across multiple variables simultaneously, for every mathematical
+operation between arrays.</p>
 <p>Earlier in this episode it was demonstrated that using core Python
 methods over a list, will outperform a loop performing the same
 calculation faster. The below example takes this a step further by
@@ -910,6 +910,14 @@ Added python sum array, skipped a couple of others-->
 <span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"numpy_sum_array: </span><span class="sc">{</span>timeit(np_sum_ar, setup<span class="op">=</span>gen_array, number<span class="op">=</span>repeats)<span class="sc">:.2f}</span><span class="ss">ms"</span>)</span>
 <span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"numpy_dot_array: </span><span class="sc">{</span>timeit(np_dot_ar, setup<span class="op">=</span>gen_array, number<span class="op">=</span>repeats)<span class="sc">:.2f}</span><span class="ss">ms"</span>)</span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>python_sum_list: 46.93ms
+python_sum_array: 33.26ms
+numpy_sum_array: 1.44ms
+numpy_dot_array: 0.29ms</code></pre>
+</div>
 <ul><li>
 <code>python_sum_list</code> uses list comprehension to perform the
 multiplication, followed by the Python core <code>sum()</code>. This
@@ -928,15 +936,7 @@ provide a much faster 1.44ms completion.</li>
 <code>numpy_dot_array</code> instead uses NumPy’s <code>dot()</code>
 to calculate the dot product in a single operation. This comes out the
 fastest at 0.29ms, 162x faster than <code>python_sum_list</code>.</li>
-</ul><div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>python_sum_list: 46.93ms
-python_sum_array: 33.26ms
-numpy_sum_array: 1.44ms
-numpy_dot_array: 0.29ms</code></pre>
-</div>
-<div id="parallel-numpy" class="callout">
+</ul><div id="parallel-numpy" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -950,7 +950,7 @@ particularly on HPC systems.</p>
 even greater speedup.</p>
 <p>The <a href="https://numpy.org/doc/stable/reference/routines.linalg.html" class="external-link">supported
 functions</a> mostly correspond to linear algebra operations.</p>
-<p>The auto-parallelisation of these functions is hardware dependant, so
+<p>The auto-parallelisation of these functions is hardware-dependent, so
 you won’t always automatically get the additional benefit of
 parallelisation. However, HPC systems should be primed to take
 advantage, so try increasing the number of cores you request when
@@ -966,7 +966,7 @@ example!</em></p>
 <h3 id="vectorize"><code>vectorize()</code><a class="anchor" aria-label="anchor" href="#vectorize"></a></h3>
 <p>Python’s <code>map()</code> was introduced earlier, for applying a
 function to all elements within a list. NumPy provides
-<code>vectorize()</code> an equivalent for operating over it’s
+<code>vectorize()</code> an equivalent for operating over its
 arrays.</p>
 <p>This doesn’t actually make use of processor-level vectorisation, from
 the <a href="https://numpy.org/doc/stable/reference/generated/numpy.vectorize.html" class="external-link">documentation</a>:</p>
@@ -1023,7 +1023,7 @@ vectorisation.</p>
 <p>Following the theme of this episode, iterating over the rows of a
 data frame using a <code>for</code> loop is not advised. The pythonic
 iteration will be slower than other approaches.</p>
-<p>Pandas allows it’s own methods to be applied to rows in many cases by
+<p>Pandas allows its own methods to be applied to rows in many cases by
 passing <code>axis=1</code>, where available these functions should be
 preferred over manual loops. Where you can’t find a suitable method,
 <code>apply()</code> can be used, which is similar to
@@ -1102,7 +1102,7 @@ rows entirely by passing only the required columns to NumPy.</p>
 <pre><code>vectorize: 1.48ms</code></pre>
 <p>It won’t always be possible to take full advantage of vectorisation,
 for example you may have conditional logic.</p>
-<p>An alternate approach is converting your dataframe to a Python
+<p>An alternate approach is converting your DataFrame to a Python
 dictionary using <code>to_dict(orient='index')</code>. This creates a
 nested dictionary, where each row of the outer dictionary is an internal
 dictionary. This can then be processed via list-comprehension:</p>
@@ -1127,7 +1127,7 @@ as fast as <code>apply()</code>.</p>
 significantly slower than a Python dictionary. There is a slight
 overhead to creating the dictionary (40ms in this example), however the
 stark difference in access speed is more than enough to overcome that
-cost for any large dataframe.</p>
+cost for any large DataFrame.</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1244,8 +1244,8 @@ any links that you are not going to use.
   "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/optimisation-minimise-python.html",
   "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/optimisation-minimise-python.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2025-01-08",
-  "datePublished": "2025-01-21"
+  "dateModified": "2025-01-23",
+  "datePublished": "2025-01-23"
 }
 
   </script><script>

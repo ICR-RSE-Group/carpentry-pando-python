@@ -374,7 +374,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Line Level Profiling</h1>
-        <p>Last updated on 2025-01-08 |
+        <p>Last updated on 2025-01-23 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/profiling-lines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -427,7 +427,7 @@ of the cost due to their complexity.</p>
 <!-- What -->
 <p>Line level profiling allows you to target specific methods to collect
 more granular metrics, which can help narrow the source of expensive
-computation further. Typically line-level profiling will calculate the
+computation further. Typically, line-level profiling will calculate the
 number of times each line is called and the total time spent executing
 each line. However, with the increased granularity come increased
 collection costs, which is why it’s targeted to specific methods.</p>
@@ -715,7 +715,7 @@ package <code>rich</code>, it will have been installed if
 <div class="callout-content">
 <p>If you’re more familiar with writing Python inside Jupyter notebooks
 you can, as with <code>snakeviz</code>, use <code>line_profiler</code>
-directly from inside notebooks. However it is still necessary for the
+directly from inside notebooks. However, it is still necessary for the
 code you wish to profile to be placed within a function.</p>
 <p>First <code>line_profiler</code> must be installed and it’s extension
 loaded.</p>
@@ -738,7 +738,7 @@ individual function that you would otherwise apply the
 <code>@profile</code> decorator to.</p>
 <p>This is followed by calling the function which runs the full code to
 be profiled.</p>
-<p>For the above fizzbuzz example it would be:</p>
+<p>For the above FizzBuzz example it would be:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PY<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1054,9 +1054,10 @@ can be understood that the vast majority of times the condition
 proceed.</p>
 <p>Remembering that this method is executed once per each of the 5000
 <code>Grass</code> agents each step of the model, it could make sense to
-pre-filter <code>prey_list</code> once each timestep before it is passed
-to <code>Grass::eaten()</code>. This would greatly reduce the number of
-<code>Prey</code> iterated, reducing the cost of the method.</p>
+pre-filter <code>prey_list</code> once each time step before it is
+passed to <code>Grass::eaten()</code>. This would greatly reduce the
+number of <code>Prey</code> iterated, reducing the cost of the
+method.</p>
 </div>
 </div>
 </div>
@@ -1074,7 +1075,7 @@ to <code>Grass::eaten()</code>. This would greatly reduce the number of
 <li>
 <code>kernprof</code> executes <code>line_profiler</code> via
 <code>python -m kernprof -lvr &lt;script name&gt; &lt;arguments&gt;</code>.</li>
-<li>Code in global scope must wrapped in a method if it is to be
+<li>Code in global scope must be wrapped in a method if it is to be
 profiled with <code>line_profiler</code>.</li>
 <li>The output from <code>line_profiler</code> lists the absolute and
 relative time spent per line for each targeted function.</li>
@@ -1143,8 +1144,8 @@ any links that you are not going to use.
   "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/profiling-lines.html",
   "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/profiling-lines.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2025-01-08",
-  "datePublished": "2025-01-21"
+  "dateModified": "2025-01-23",
+  "datePublished": "2025-01-23"
 }
 
   </script><script>

@@ -375,7 +375,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Structures &amp; Algorithms</h1>
-        <p>Last updated on 2025-01-08 |
+        <p>Last updated on 2025-01-23 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/optimisation-data-structures-algorithms.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -422,7 +422,7 @@ a list or array</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>The important information for students to learn within this episode
 are the patterns demonstrated via the benchmarks.</p>
@@ -474,7 +474,7 @@ which works out to an over allocation of roughly ~12.5%.</p>
 <figure><img src="../fig/cpython_list_allocations.png" alt="A line graph displaying the relationship between the number of calls to append() and the number of internal resizes of a CPython list. It has a logarithmic relationship, at 1 million appends there have been 84 internal resizes." class="figure mx-auto d-block"><div class="figcaption">The relationship between the number of appends
 to an empty list, and the number of internal resizes in CPython.</div>
 </figure><p>This has two implications:</p>
-<ul><li>If you are creating large static lists, they will use upto 12.5%
+<ul><li>If you are creating large static lists, they will use up to 12.5%
 excess memory.</li>
 <li>If you are growing a list with <code>append()</code>, there will be
 large amounts of redundant allocations and copies as the list
@@ -603,7 +603,7 @@ key, then the key must not be present in the ata structure.</p>
 <div class="section level3">
 <h3 id="keys">Keys<a class="anchor" aria-label="anchor" href="#keys"></a></h3>
 <p>Keys will typically be a core Python type such as a number or string.
-However multiple of these can be combined as a Tuple to form a compound
+However, multiple of these can be combined as a Tuple to form a compound
 key, or a custom class can be used if the methods
 <code>__hash__()</code> and <code>__eq__()</code> have been
 implemented.</p>
@@ -710,7 +710,7 @@ duplicates <code>int(N/2)</code> affect performance?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <ul><li>
 <code>uniqueSet()</code> passes the input list to the constructor
@@ -736,7 +736,7 @@ comprehension.</em></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Constructing a set by passing in a single list is the clear
 winner.</p>
@@ -749,7 +749,7 @@ approach, because of how many times the list is searched. This gap will
 only grow as the number of items increases.</p>
 <p>Sorting the input list reduces the cost of searching the output list
 significantly, however it is still 8x slower than the fastest approach.
-In part because around half of it’s runtime is now spent sorting the
+In part because around half of its runtime is now spent sorting the
 list.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -775,14 +775,14 @@ until it finds the correct item or an empty slot. In the worst possible
 case, whereby all insert items have collided this would mean checking
 every single item. In practice, hashing data-structures are designed to
 minimise the chances of this happening and most items should be found or
-identified as missing with a single access.</p>
-<p>In contrast if searching a list or array, the default approach is to
+identified as missing with single access.</p>
+<p>In contrast, if searching a list or array, the default approach is to
 start at the first item and check all subsequent items until the correct
 item has been found. If the correct item is not present, this will
-require the entire list to be checked. Therefore the worst-case is
+require the entire list to be checked. Therefore, the worst-case is
 similar to that of the hashing data-structure, however it is guaranteed
 in cases where the item is missing. Similarly, on-average we would
-expect an item to be found half way through the list, meaning that an
+expect an item to be found halfway through the list, meaning that an
 average search will require checking half of the items.</p>
 <p>If however the list or array is sorted, a binary search can be used.
 A binary search divides the list in half and checks which half the
@@ -838,12 +838,12 @@ performance.</p>
 <span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"linear_search_list: </span><span class="sc">{</span>timeit(linear_search_list, number<span class="op">=</span>repeats)<span class="op">-</span>gen_time<span class="sc">:.2f}</span><span class="ss">ms"</span>)</span>
 <span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"binary_search_list: </span><span class="sc">{</span>timeit(binary_search_list, number<span class="op">=</span>repeats)<span class="op">-</span>gen_time<span class="sc">:.2f}</span><span class="ss">ms"</span>)</span></code></pre>
 </div>
-<p>Searching the set is fastest performing 25,000 searches in 0.04ms.
-This is followed by the binary search of the (sorted) list which is 145x
-slower, although the list has been filtered for duplicates. A list still
-containing duplicates would be longer, leading to a more expensive
-search. The linear search of the list is more than 56,600x slower than
-the fastest, it really shouldn’t be used!</p>
+<p>Searching the set is the fastest, performing 25,000 searches in
+0.04ms. This is followed by the binary search of the (sorted) list which
+is 145x slower, although the list has been filtered for duplicates. A
+list still containing duplicates would be longer, leading to a more
+expensive search. The linear search of the list is more than 56,600x
+slower than searching the set, it really shouldn’t be used!</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -936,8 +936,8 @@ any links that you are not going to use.
   "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/optimisation-data-structures-algorithms.html",
   "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/instructor/optimisation-data-structures-algorithms.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2025-01-08",
-  "datePublished": "2025-01-21"
+  "dateModified": "2025-01-23",
+  "datePublished": "2025-01-23"
 }
 
   </script><script>

@@ -375,7 +375,7 @@ maintainability</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Optimisation</h1>
-        <p>Last updated on 2025-01-14 |
+        <p>Last updated on 2025-01-23 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/optimisation-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -410,13 +410,13 @@ optimisation</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
-<hr class="half-width"><!-- Changing the narrative: you'd better learn how to write a good code an what are the good practice --><p>Think about optimization as the first step on your journey to writing
+<hr class="half-width"><!-- Changing the narrative: you'd better learn how to write a good code an what are the good practice --><p>Think about optimisation as the first step on your journey to writing
 high-performance code. It’s like a race: the faster you can go without
 taking unnecessary detours, the better. Code optmisation is all about
 understanding the principles of efficiency in Python and being conscious
 of how small changes can yield massive improvements.</p>
 <!-- Necessary to understand how code executes (to a degree) -->
-<p>These are the first steps in code optimization: making better choices
+<p>These are the first steps in code optimisation: making better choices
 as you write your code and have an understanding of what a computer is
 doing to execute it.</p>
 <!-- Goal is to give you a high level understanding of how your code executes. You don't need to be an expert, even a vague general understanding will leave you in a stronger position. -->
@@ -439,19 +439,19 @@ maintainability<a class="anchor" aria-label="anchor" href="#optimising-code-from
 worrying about, the speed of noncritical parts of their programs, and
 these attempts at efficiency actually have a strong negative impact when
 debugging and maintenance are considered. We should forget about small
-efficiencies, say about 97% of the time: <strong>premature optimization
+efficiencies, say about 97% of the time: <strong>premature optimisation
 is the root of all evil</strong>. Yet we should not pass up our
 opportunities in that critical 3%. - Donald Knuth</p>
 </blockquote>
 <p>This classic quote among computer scientists states; when considering
 optimisation it is important to focus on the potential impact, both to
-the performance and maintainability of the code.</p>
-<p>Advanced optimisations, mostly outside the scope of this course, can
-increase the cost of maintenance by obfuscating what code is doing. Even
-if you are a solo-developer working on private code, your future self
-should be able to easily comprehend your implementation.</p>
-<p>Therefore, the balance between the impact to both performance and
-maintainability should be considered when optimising code.</p>
+the performance and maintainability of the code. Advanced optimisations,
+mostly outside the scope of this course, can increase the cost of
+maintenance by obfuscating what code is doing. Even if you are a
+solo-developer working on private code, your future self should be able
+to easily comprehend your implementation. Therefore, the balance between
+the impact to both performance and maintainability should be considered
+when optimising code.</p>
 <p>This is not to say, don’t consider performance when first writing
 code. The selection of appropriate algorithms and data-structures
 covered in this course form a good practice, simply don’t fret over a
@@ -466,21 +466,18 @@ correct.</p>
 software development process. Test can be used to clarify how your
 software should perform, ensuring that new features work as intended and
 protecting against unintended changes to old functionality.</p>
-<p>There are a plethora of methods for testing code.</p>
 </section><section><h2 class="section-heading" id="pytest-overview">pytest Overview<a class="anchor" aria-label="anchor" href="#pytest-overview"></a></h2>
-<hr class="half-width"><p>Most Python developers use the testing package <a href="https://docs.pytest.org/en/latest/" class="external-link">pytest</a>, it’s a great place
-to get started if you’re new to testing code.</p>
+<hr class="half-width"><p>There are a plethora of methods for testing code. Most Python
+developers use the testing package <a href="https://docs.pytest.org/en/latest/" class="external-link">pytest</a>, it’s a great place
+to get started if you’re new to testing code. Tests should be created
+within a project’s testing directory, by creating files named with the
+form <code>test_*.py</code> or <code>*_test.py</code>. pytest looks for
+these files, when running the test suite. Within the created test file,
+any functions named in the form <code>test*</code> are considered tests
+that will be executed by pytest. The <code>assert</code> keyword is
+used, to test whether a condition evaluates to <code>True</code>.</p>
 <p>Here’s a quick example of how a test can be used to check your
 function’s output against an expected value.</p>
-<p>Tests should be created within a project’s testing directory, by
-creating files named with the form <code>test_*.py</code> or
-<code>*_test.py</code>.</p>
-<p>pytest looks for these files, when running the test suite.</p>
-<p>Within the created test file, any functions named in the form
-<code>test*</code> are considered tests that will be executed by
-pytest.</p>
-<p>The <code>assert</code> keyword is used, to test whether a condition
-evaluates to <code>True</code>.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -633,8 +630,8 @@ any links that you are not going to use.
   "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/optimisation-introduction.html",
   "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/optimisation-introduction.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2025-01-14",
-  "datePublished": "2025-01-21"
+  "dateModified": "2025-01-23",
+  "datePublished": "2025-01-23"
 }
 
   </script><script>
