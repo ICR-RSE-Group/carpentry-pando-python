@@ -375,7 +375,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Structures &amp; Algorithms</h1>
-        <p>Last updated on 2025-01-29 |
+        <p>Last updated on 2025-01-30 |
 
         <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/episodes/optimisation-data-structures-algorithms.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -454,6 +454,8 @@ list implementation’s growth factor. CPython for example uses <a href="https:/
 which works out to an over allocation of roughly ~12.5%.</p>
 <figure><img src="fig/cpython_list_allocations.png" alt="A line graph displaying the relationship between the number of calls to append() and the number of internal resizes of a CPython list. It has a logarithmic relationship, at 1 million appends there have been 84 internal resizes." class="figure mx-auto d-block"><div class="figcaption">The relationship between the number of appends
 to an empty list, and the number of internal resizes in CPython.</div>
+</figure><figure><img src="fig/python_lists.png" alt="Small cheat note for better visualization of Python lists." class="figure mx-auto d-block"><div class="figcaption">Visual note on resizing behaviour of Python
+lists.</div>
 </figure><p>This has two implications:</p>
 <ul><li>If you are creating large static lists, they will use up to 12.5%
 excess memory.</li>
@@ -768,7 +770,8 @@ until it finds the correct item or an empty slot. In the worst possible
 case, whereby all insert items have collided this would mean checking
 every single item. In practice, hashing data-structures are designed to
 minimise the chances of this happening and most items should be found or
-identified as missing with single access.</p>
+identified as missing with single access, result in an average time
+complexity of a constant (which is very good!).</p>
 <p>In contrast, if searching a list or array, the default approach is to
 start at the first item and check all subsequent items until the correct
 item has been found. If the correct item is not present, this will
@@ -848,6 +851,57 @@ binary_search_list: 5.79ms</code></pre>
 the proportion of searched items that exist within the list. However,
 the pattern is likely to remain the same. Linear searches should be
 avoided!</p>
+<div id="callout3" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Dictionaries are designed to handle insertions efficiently, with
+average-case O(1) time complexity per insertion for a small size dict,
+but it is clearly problematic for large size dict. In this case, it is
+better to find an alternative Data Structure for example List, NumPy
+Array or Pandas DataFrame. The table below summarizes the best uses and
+performance characteristics of each data structure:</p>
+<table class="table"><colgroup><col width="9%"><col width="17%"><col width="21%"><col width="13%"><col width="37%"></colgroup><thead><tr class="header"><th>Data Structure</th>
+<th>Small Size Insertion (O(1))</th>
+<th>Large Size Insertion</th>
+<th>Search Performance (O(1))</th>
+<th>Best For</th>
+</tr></thead><tbody><tr class="odd"><td>Dictionary</td>
+<td>✅</td>
+<td>⚠️ Occasional O(n) (due to resizing)</td>
+<td>✅ O(1) (Hashing)</td>
+<td>Fast insertions and lookups, key-value storage, small to medium
+data</td>
+</tr><tr class="even"><td>List</td>
+<td>✅ Amortized (O(1) Append)</td>
+<td>✅ Efficient (Amortized O(1))</td>
+<td>❌ O(n) (Linear Search)</td>
+<td>Dynamic appends, ordered data storage, general-purpose use</td>
+</tr><tr class="odd"><td>Set</td>
+<td>✅ Average O(1)</td>
+<td>⚠️ Occasional O(n) (due to resizing)</td>
+<td>✅ O(1) (Hashing)</td>
+<td>Membership testing, unique elements, small to medium datasets</td>
+</tr><tr class="even"><td>NumPy Array</td>
+<td>❌ (Fixed Size)</td>
+<td>⚠️ Costly (O(n) when resizing)</td>
+<td>❌ O(n) (Linear Search)</td>
+<td>Numerical computations, fixed-size data, vectorized operations</td>
+</tr><tr class="odd"><td>Pandas DataFrame</td>
+<td>❌ (if adding rows)</td>
+<td>⚠️ Efficient (Column-wise)</td>
+<td>❌ O(n) (Linear Search)</td>
+<td>Column-wise analytics, tabular data, large datasets</td>
+</tr></tbody></table><p>NumPy and Pandas, which we have not yet covered, are powerful
+libraries designed for handling large matrices and arrays. They are
+implemented in C to optimize performance, making them ideal for
+numerical computations and data analysis tasks.</p>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -929,8 +983,8 @@ any links that you are not going to use.
   "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/optimisation-data-structures-algorithms.html",
   "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/optimisation-data-structures-algorithms.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2025-01-29",
-  "datePublished": "2025-01-29"
+  "dateModified": "2025-01-30",
+  "datePublished": "2025-01-30"
 }
 
   </script><script>
