@@ -1,7 +1,6 @@
 ---
 site: sandpaper::sandpaper_site
 ---
-
 <!--
 ![Welcome to Python Optimisation and Performance Profiling Training!
 ](episodes/fig/pando-python-hex-sticker.png){
