@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Python Optimisation and Performance Profiling: All Images</title>
+<title>Performance Profiling &amp; Optimisation (Python): All Images</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="assets/styles.css">
 <script src="assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
@@ -20,27 +20,27 @@
         processEscapes: true
       }
     });
-    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="favicons/swc/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicons/swc/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicons/swc/favicon-16x16.png">
-<link rel="manifest" href="favicons/swc/site.webmanifest">
-<link rel="mask-icon" href="favicons/swc/safari-pinned-tab.svg" color="#5bbad5">
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="favicons/incubator/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/incubator/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/incubator/favicon-16x16.png">
+<link rel="manifest" href="favicons/incubator/site.webmanifest">
+<link rel="mask-icon" href="favicons/incubator/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
 </head>
 <body>
-    <header id="top" class="navbar navbar-expand-md top-nav software"><svg xmlns="http://www.w3.org/2000/svg" class="d-none"><symbol id="check2" viewbox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path></symbol><symbol id="circle-half" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path></symbol><symbol id="moon-stars-fill" viewbox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></symbol><symbol id="sun-fill" viewbox="0 0 16 16"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></symbol></svg><a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+    <header id="top" class="navbar navbar-expand-md top-nav incubator"><svg xmlns="http://www.w3.org/2000/svg" class="d-none"><symbol id="check2" viewbox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path></symbol><symbol id="circle-half" viewbox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path></symbol><symbol id="moon-stars-fill" viewbox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></symbol><symbol id="sun-fill" viewbox="0 0 16 16"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></symbol></svg><a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="swc-logo" alt="Software Carpentry" src="assets/images/software-logo.svg"><span class="badge text-bg-warning">
-          <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
+        <img id="incubator-logo" alt="Carpentries Incubator" src="assets/images/incubator-logo.svg"><span class="badge text-bg-info">
+          <abbr title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
-              Alpha
+              <i aria-hidden="true" class="icon" data-feather="alert-circle" style="border-radius: 5px"></i>
+              Beta
             </a>
-            <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
+            <span class="visually-hidden">This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.</span>
           </abbr>
         </span>
 
@@ -85,16 +85,16 @@
 </div>
     </div>
   </div>
-  <hr></header><nav class="navbar navbar-expand-xl bottom-nav software" aria-label="Main Navigation"><div class="container-fluid nav-container">
+  <hr></header><nav class="navbar navbar-expand-xl bottom-nav incubator" aria-label="Main Navigation"><div class="container-fluid nav-container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
       <span class="navbar-toggler-icon"></span>
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Software Carpentry" src="assets/images/software-logo-sm.svg">
+      <img class="small-logo" alt="Carpentries Incubator" src="assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Python Optimisation and Performance Profiling
+      Performance Profiling &amp; Optimisation (Python)
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -105,7 +105,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Python Optimisation and Performance Profiling
+            Performance Profiling &amp; Optimisation (Python)
           </span>
         </li>
         <li class="nav-item">
@@ -122,6 +122,7 @@
             More <i data-feather="chevron-down"></i>
           </button>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<li><a class="dropdown-item" href="technical-appendix.html">Technical Appendix</a></li>
 <li><a class="dropdown-item" href="acknowledgements.html">Acknowledgements</a></li>
 <li><a class="dropdown-item" href="ppp.html">Performant Python Patterns (Talk)</a></li>
 <li><a class="dropdown-item" href="reference.html">Reference</a></li>
@@ -143,14 +144,14 @@
   </div>
 <!--/div.container-fluid -->
 </nav><div class="col-md-12 mobile-title">
-  Python Optimisation and Performance Profiling
+  Performance Profiling &amp; Optimisation (Python)
 </div>
 
 <aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
     %
   </div>
-  <div class="progress software">
-    <div class="progress-bar software" role="progressbar" style="width: %" aria-valuenow="" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress incubator">
+    <div class="progress-bar incubator" role="progressbar" style="width: %" aria-valuenow="" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -245,7 +246,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="optimisation-introduction.html">1. Introduction to Optimisation</a>
+        <a href="profiling-introduction.html">1. Introduction to Profiling</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -257,7 +258,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="optimisation-data-structures-algorithms.html">2. Data Structures &amp; Algorithms</a>
+        <a href="profiling-functions.html">2. Function Level Profiling</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -269,7 +270,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="optimisation-minimise-python.html">3. Understanding Python (NumPy/Pandas)</a>
+        <a href="short-break1.html">3. Break</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -281,7 +282,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="optimisation-use-latest.html">4. Keep Python &amp; Packages up to Date</a>
+        <a href="profiling-lines.html">4. Line Level Profiling</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -293,7 +294,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="optimisation-memory.html">5. Understanding Memory</a>
+        <a href="profiling-conclusion.html">5. Profiling Conclusion</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -305,7 +306,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="optimisation-conclusion.html">6. Optimisation Conclusion</a>
+        <a href="optimisation-introduction.html">6. Introduction to Optimisation</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -317,7 +318,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="long-break1.html">7. Lunch Break</a>
+        <a href="optimisation-using-python.html">7. Using Python Language Features and the Standard Library</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -329,7 +330,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="profiling-introduction.html">8. Introduction to Profiling</a>
+        <a href="optimisation-data-structures-algorithms.html">8. Data Structures &amp; Algorithms</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -341,7 +342,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="profiling-functions.html">9. Function Level Profiling</a>
+        <a href="long-break1.html">9. Break</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -353,7 +354,7 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="profiling-lines.html">10. Line Level Profiling</a>
+        <a href="optimisation-numpy.html">10. Using Scientific Python Packages (NumPy, Pandas and more)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -365,7 +366,31 @@
 <div class="accordion accordion-flush" id="accordionFlush12">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading12">
-        <a href="profiling-conclusion.html">11. Profiling Conclusion</a>
+        <a href="optimisation-use-latest.html">11. Keep Python &amp; Packages up to Date</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush13">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading13">
+        <a href="optimisation-latency.html">12. Understanding Latency</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush14">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading14">
+        <a href="optimisation-conclusion.html">13. Optimisation Conclusion</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -398,7 +423,8 @@
                       <li>
                         <a href="profiles.html">Learner Profiles</a>
                       </li>
-                      <li><a href="acknowledgements.html">Acknowledgements</a></li>
+                      <li><a href="technical-appendix.html">Technical Appendix</a></li>
+<li><a href="acknowledgements.html">Acknowledgements</a></li>
 <li><a href="ppp.html">Performant Python Patterns (Talk)</a></li>
 <li><a href="reference.html">Reference</a></li>
                     </ul>
@@ -430,54 +456,7 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="optimisation-introduction"><h2 class="section-heading"><a href="optimisation-introduction.html">Introduction to Optimisation</a></h2>
-<hr class="half-width"></section><section id="optimisation-data-structures-algorithms"><h2 class="section-heading"><a href="optimisation-data-structures-algorithms.html">Data Structures &amp; Algorithms</a></h2>
-<hr class="half-width">
-<h3 id="optimisation-data-structures-algorithms-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘A line graph displaying the relationship between the number of calls to append() and the number of internal resizes of a CPython list. It has a logarithmic relationship, at 1 million appends there have been 84 internal resizes.’</p>
-<figure><img src="fig/cpython_list_allocations.png" alt="A line graph displaying the relationship between the number of calls to append() and the number of internal resizes of a CPython list. It has a logarithmic relationship, at 1 million appends there have been 84 internal resizes." class="figure mx-auto d-block"><div class="figcaption">The relationship between the number of appends
-to an empty list, and the number of internal resizes in CPython.</div>
-</figure><hr>
-<h3 id="optimisation-data-structures-algorithms-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Small cheat note for better visualization of Python lists.’</p>
-<figure><img src="fig/python_lists.png" alt="Small cheat note for better visualization of Python lists." class="figure mx-auto d-block"><div class="figcaption">Visual note on resizing behaviour of Python
-lists.</div>
-</figure><hr>
-<h3 id="optimisation-data-structures-algorithms-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘A diagram showing how keys (hashes) 37, 64, 14, 94, 67 are inserted into a hash table with 11 indices. The insertion of 59, 80, and 39 demonstrates linear probing to resolve collisions.’</p>
-<p>When a dictionary or hash table in Python grows, the underlying
-storage is resized, which necessitates re-inserting every existing item
-into the new structure. This process can be computationally expensive
-but is essential for maintaining efficient average probe times when
-searching for keys. <img src="fig/hash_linear_probing.png" alt="A diagram showing how keys (hashes) 37, 64, 14, 94, 67 are inserted into a hash table with 11 indices. The insertion of 59, 80, and 39 demonstrates linear probing to resolve collisions." class="figure">
-To look up or verify the existence of a key in a hashing data structure,
-the key is re-hashed, and the process mirrors that of insertion. The
-corresponding index is probed to see if it contains the provided key. If
-the key at the index matches, the operation succeeds. If an empty index
-is reached before finding the key, it indicates that the key does not
-exist in the structure.</p>
-<hr></section><section id="optimisation-minimise-python"><h2 class="section-heading"><a href="optimisation-minimise-python.html">Understanding Python (NumPy/Pandas)</a></h2>
-<hr class="half-width"></section><section id="optimisation-use-latest"><h2 class="section-heading"><a href="optimisation-use-latest.html">Keep Python &amp; Packages up to Date</a></h2>
-<hr class="half-width"></section><section id="optimisation-memory"><h2 class="section-heading"><a href="optimisation-memory.html">Understanding Memory</a></h2>
-<hr class="half-width">
-<h3 id="optimisation-memory-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘An annotated photo of inside a desktop computer's case. The CPU, RAM, power supply, graphics cards (GPUs) and harddrive are labelled.’</p>
-<figure><img src="fig/annotated-motherboard.jpg" alt="An annotated photo of inside a desktop computer's case. The CPU, RAM, power supply, graphics cards (GPUs) and harddrive are labelled." class="figure mx-auto d-block"><div class="figcaption">An annotated photo of a computer’s
-hardware.</div>
-</figure><hr>
-<h3 id="optimisation-memory-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘An abstract representation of a CPU, RAM and Disk, showing their internal caches and the pathways data can pass.’</p>
-<p>While you don’t need to know all the details of how memory works,
-it’s helpful to know that memory locality—keeping related data together
-and accessing it in chunks—is key to making programs run faster. <img src="fig/hardware.png" alt="An abstract representation of a CPU, RAM and Disk, showing their internal caches and the pathways data can pass." class="figure"></p>
-<hr>
-<h3 id="optimisation-memory-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘A horizontal bar chart displaying the relative latencies for L1/L2/L3 cache, RAM, SSD, HDD and a packet being sent from London to California and back. These latencies range from 1 nanosecond to 140 milliseconds and are displayed with a log scale.’</p>
-<figure><img src="fig/latency.png" alt="A horizontal bar chart displaying the relative latencies for L1/L2/L3 cache, RAM, SSD, HDD and a packet being sent from London to California and back. These latencies range from 1 nanosecond to 140 milliseconds and are displayed with a log scale." class="figure mx-auto d-block"><div class="figcaption">A graph demonstrating the wide variety of
-latencies a programmer may experience when accessing data.</div>
-</figure><hr></section><section id="optimisation-conclusion"><h2 class="section-heading"><a href="optimisation-conclusion.html">Optimisation Conclusion</a></h2>
-<hr class="half-width"></section><section id="long-break1"><h2 class="section-heading"><a href="long-break1.html">Lunch Break</a></h2>
-<hr class="half-width"></section><section id="profiling-introduction"><h2 class="section-heading"><a href="profiling-introduction.html">Introduction to Profiling</a></h2>
+<section id="profiling-introduction"><h2 class="section-heading"><a href="profiling-introduction.html">Introduction to Profiling</a></h2>
 <hr class="half-width">
 <h3 id="profiling-introduction-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘A viztracer timeline of the execution of the Pred-Prey exercise from later in the course. There is a shallow repeating pattern on the left side which corresponds to model steps, the right side instead has a range of 'icicles' which correspond to the deep call hierarchies of matplotlib generating a graph.’</p>
@@ -517,7 +496,8 @@ provided by <code>snakeviz</code>.</div>
 <figure><img src="fig/predprey_out.png" alt="A line graph plotting population over time through 250 steps of the pred prey model. Grass/20, shown in green, has a brief dip in the first 30 steps, but recovers holding steady at approximately 240 (4800 agents). Prey, shown in blue, starts at 200, quickly drops to around 185, before levelling off for steps and then slowly declining to a final value of 50. The data for predators, shown in red, has significantly more noise. There are 50 predators to begin, this rises briefly before falling to around 10, from here it noisily grows to around 70 by step 250 with several larger declines during the growth." class="figure mx-auto d-block"><div class="figcaption">
 <code>predprey_out.png</code> as produced by the
 default configuration of <code>predprey.py</code>.</div>
-</figure><hr></section><section id="profiling-lines"><h2 class="section-heading"><a href="profiling-lines.html">Line Level Profiling</a></h2>
+</figure><hr></section><section id="short-break1"><h2 class="section-heading"><a href="short-break1.html">Break</a></h2>
+<hr class="half-width"></section><section id="profiling-lines"><h2 class="section-heading"><a href="profiling-lines.html">Line Level Profiling</a></h2>
 <hr class="half-width">
 <h3 id="profiling-lines-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘A screenshot of the `line_profiler` output from the previous code block, where the code within the line contents column has basic highlighting.’</p>
@@ -529,6 +509,44 @@ default configuration of <code>predprey.py</code>.</div>
 <figure><img src="fig/line_profiler-worked-example-notebook.png" alt="A screenshot of the line_profiler output from the previous code block inside a Jupyter notebook." class="figure mx-auto d-block"><div class="figcaption">Output provided by <code>line_profiler</code>
 inside a Juypter notebook for the above FizzBuzz profile code.</div>
 </figure><hr></section><section id="profiling-conclusion"><h2 class="section-heading"><a href="profiling-conclusion.html">Profiling Conclusion</a></h2>
+<hr class="half-width"></section><section id="optimisation-introduction"><h2 class="section-heading"><a href="optimisation-introduction.html">Introduction to Optimisation</a></h2>
+<hr class="half-width">
+<h3 id="optimisation-introduction-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A diagram illustrating the difference between integers in C and Python. In C, the integer is a raw number in memory. In Python, it additionally contains a header with metadata.’</p>
+<figure><img src="fig/int-c-vs-py.png" alt="A diagram illustrating the difference between integers in C and Python. In C, the integer is a raw number in memory. In Python, it additionally contains a header with metadata." class="figure mx-auto d-block"><!-- Figure inspired by https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/#1.-Python-is-Dynamically-Typed-rather-than-Statically-Typed. --></figure><hr></section><section id="optimisation-using-python"><h2 class="section-heading"><a href="optimisation-using-python.html">Using Python Language Features and the Standard Library</a></h2>
+<hr class="half-width"></section><section id="optimisation-data-structures-algorithms"><h2 class="section-heading"><a href="optimisation-data-structures-algorithms.html">Data Structures &amp; Algorithms</a></h2>
+<hr class="half-width">
+<h3 id="optimisation-data-structures-algorithms-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A list uses a contiguous block of memory, similar to an array, for storing the pointers to its elements. It is depicted as a series of five adjacent boxes, labelled 'P1' to 'P5', representing pointers to the list's elements. It can have additional storage beyond its length to make appends faster. An illustration shows the previous list with two extra empty boxes marked with question marks, indicating spare elements. Below, Python code `len(my_list) == 5` and `my_list.append(6)` is shown. After appending, the first of the previously empty boxes contains 'P6', and the last one remains empty. The length is now `len(my_list) == 6`. Appending to a full list causes it to grow. This makes some appends slower. An illustration depicts a full list with 'P1' through 'P7' in adjacent boxes and a label "No spare elements!". Below, Python code `len(my_list) == 7` and `my_list.append(8)` is shown. The result is a new, larger continuous block of memory with 'P1' through 'P8' followed by a question mark in an additional box, indicating one spare element. The label "2 new elements" with curved arrows suggests that when the list grows, it typically allocates more memory than just the space for the new element. A concluding note states that a list will typically grow by 12.5%, hence shorter lists will grow more frequently when appending.’</p>
+<figure><img src="fig/list-append.png" alt="A list uses a contiguous block of memory, similar to an array, for storing the pointers to its elements. It is depicted as a series of five adjacent boxes, labelled 'P1' to 'P5', representing pointers to the list's elements. It can have additional storage beyond its length to make appends faster. An illustration shows the previous list with two extra empty boxes marked with question marks, indicating spare elements. Below, Python code `len(my_list) == 5` and `my_list.append(6)` is shown. After appending, the first of the previously empty boxes contains 'P6', and the last one remains empty. The length is now `len(my_list) == 6`. Appending to a full list causes it to grow. This makes some appends slower. An illustration depicts a full list with 'P1' through 'P7' in adjacent boxes and a label &quot;No spare elements!&quot;. Below, Python code `len(my_list) == 7` and `my_list.append(8)` is shown. The result is a new, larger continuous block of memory with 'P1' through 'P8' followed by a question mark in an additional box, indicating one spare element. The label &quot;2 new elements&quot; with curved arrows suggests that when the list grows, it typically allocates more memory than just the space for the new element. A concluding note states that a list will typically grow by 12.5%, hence shorter lists will grow more frequently when appending." class="figure mx-auto d-block"><div class="figcaption">A visual diagram of list storage.</div>
+</figure><hr>
+<h3 id="optimisation-data-structures-algorithms-figure-2">Figure 2</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A line graph displaying the relationship between the number of calls to append() and the number of internal resizes of a CPython list. It has a logarithmic relationship, at 1 million appends there have been 84 internal resizes.’</p>
+<figure><img src="fig/cpython_list_allocations.png" alt="A line graph displaying the relationship between the number of calls to append() and the number of internal resizes of a CPython list. It has a logarithmic relationship, at 1 million appends there have been 84 internal resizes." class="figure mx-auto d-block"><div class="figcaption">The relationship between the number of appends
+to an empty list, and the number of internal resizes in CPython.</div>
+</figure><hr>
+<h3 id="optimisation-data-structures-algorithms-figure-3">Figure 3</h3>
+<p aria-hidden="true">Image 1 of 1: ‘An image of a single long bookshelf, with a large number of books.’</p>
+<figure><img src="fig/bookshelf_list.jpg" alt="An image of a single long bookshelf, with a large number of books." class="figure mx-auto d-block"><div class="figcaption">A bookshelf corresponding to a Python
+list.</div>
+</figure><hr>
+<h3 id="optimisation-data-structures-algorithms-figure-4">Figure 4</h3>
+<p aria-hidden="true">Image 1 of 1: ‘An image of two bookcases, labelled "Sci-Fi" and "Romance". Each bookcase contains shelves labelled in alphabetical order, with zero or few books on each shelf.’</p>
+<figure><img src="fig/bookshelf_dict.jpg" alt='An image of two bookcases, labelled "Sci-Fi" and "Romance". Each bookcase contains shelves labelled in alphabetical order, with zero or few books on each shelf.' class="figure mx-auto d-block"><div class="figcaption">A bookshelf corresponding to a Python
+dictionary.</div>
+</figure><hr></section><section id="long-break1"><h2 class="section-heading"><a href="long-break1.html">Break</a></h2>
+<hr class="half-width"></section><section id="optimisation-numpy"><h2 class="section-heading"><a href="optimisation-numpy.html">Using Scientific Python Packages (NumPy, Pandas and more)</a></h2>
+<hr class="half-width">
+<h3 id="optimisation-numpy-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A diagram illustrating the difference between a NumPy array and a Python list. The NumPy array is a raw block of memory containing numerical values. A Python list contains a header with metadata and multiple items, each of which is a reference to another Python object with its own header and value.’</p>
+<figure><img src="fig/numpy-array-vs-list.png" alt="A diagram illustrating the difference between a NumPy array and a Python list. The NumPy array is a raw block of memory containing numerical values. A Python list contains a header with metadata and multiple items, each of which is a reference to another Python object with its own header and value." class="figure mx-auto d-block"><!-- Figure inspired by https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/#3.-Python's-object-model-can-lead-to-inefficient-memory-access --></figure><hr></section><section id="optimisation-use-latest"><h2 class="section-heading"><a href="optimisation-use-latest.html">Keep Python &amp; Packages up to Date</a></h2>
+<hr class="half-width"></section><section id="optimisation-latency"><h2 class="section-heading"><a href="optimisation-latency.html">Understanding Latency</a></h2>
+<hr class="half-width">
+<h3 id="optimisation-latency-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A horizontal bar chart displaying the relative latencies for L1/L2/L3 cache, RAM, SSD, HDD and a packet being sent from London to California and back. These latencies range from 1 nanosecond to 140 milliseconds and are displayed with a log scale.’</p>
+<figure><img src="fig/latency.png" alt="A horizontal bar chart displaying the relative latencies for L1/L2/L3 cache, RAM, SSD, HDD and a packet being sent from London to California and back. These latencies range from 1 nanosecond to 140 milliseconds and are displayed with a log scale." class="figure mx-auto d-block"><div class="figcaption">A graph demonstrating the wide variety of
+latencies a programmer may experience when accessing data.</div>
+</figure><hr></section><section id="optimisation-conclusion"><h2 class="section-heading"><a href="optimisation-conclusion.html">Optimisation Conclusion</a></h2>
 <hr class="half-width"></section>
 </div>
     </main>
@@ -542,12 +560,12 @@ inside a Juypter notebook for the above FizzBuzz profile code.</div>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/carpentries-incubator/pando-python/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/" class="external-link">Source</a></p>
-				<p><a href="https://github.com/ICR-RSE-Group/carpentry-pando-python/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:mira.sarkis@icr.ac.uk">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="https://github.com/carpentries-incubator/pando-python/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/carpentries-incubator/pando-python/" class="external-link">Source</a></p>
+				<p><a href="https://github.com/carpentries-incubator/pando-python/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:robert.chisholm@sheffield.ac.uk">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
 
@@ -567,23 +585,23 @@ inside a Juypter notebook for the above FizzBuzz profile code.</div>
     {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "@id": "https://ICR-RSE-Group.github.io/carpentry-pando-python/images.html",
+  "@id": "https://carpentries-incubator.github.io/pando-python/images.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "python, profiling, optimisation, data structures, algorithms",
   "name": "All Images",
   "creativeWorkStatus": "active",
-  "url": "https://ICR-RSE-Group.github.io/carpentry-pando-python/images.html",
-  "identifier": "https://ICR-RSE-Group.github.io/carpentry-pando-python/images.html",
+  "url": "https://carpentries-incubator.github.io/pando-python/images.html",
+  "identifier": "https://carpentries-incubator.github.io/pando-python/images.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2025-09-02",
-  "datePublished": "2025-09-02"
+  "dateModified": "2025-09-03",
+  "datePublished": "2025-09-03"
 }
 
   </script><script>
 		feather.replace();
-	</script>
+	</script><script defer src="https://cloud.umami.is/script.js" data-website-id="2b561bd0-0d7a-436b-a18d-d19c94785362"></script>
 </body>
 </html><!-- END:   inst/pkgdown/templates/layout.html-->
 
