@@ -22,9 +22,6 @@ exercises: 10
 
 ## Introduction
 
-<!-- what if my code is not performnant -->
-But what if, despite your best efforts, performance still isn’t up to par? This is where profiling comes into play — and it’s a game-changer. You can’t always guess what’s slow. Profiling helps you see hidden inefficiencies that might be buried deep within the code.
-
 <!-- Profiling is (what) -->
 Performance profiling is the process of analysing and measuring the performance of a program or script, to understand where time is being spent during execution.
 
@@ -44,7 +41,7 @@ Increasingly, particularly with relation to HPC, attention is being paid to the 
 
 Profiling is most relevant to working code, when you have reached a stage that the code works and are considering deploying it.
 
-Any code that will run for more than a few minutes over its lifetime, that isn't a quick one-shot script can benefit from profiling.
+Any code that will run for more than a few minutes over its lifetime and isn't a quick one-off script can benefit from profiling.
 
 Profiling should be a relatively quick and inexpensive process. If there are no significant bottlenecks in your code you can quickly be confident that your code is reasonably optimised. If you do identify a concerning bottleneck, further work to optimise your code and reduce the bottleneck could see significant improvements to the performance of your code and hence productivity.
 
@@ -149,7 +146,7 @@ This will identify individual lines of code that occupy an disproportionate amou
 <!-- Typically, function-level profiling should be attempted first as it has a greater signal-to-noise ratio and is often significantly cheaper to perform. -->
 
 <!-- We will be covering -->
-Later in this course we will cover the usage of the line-level profiler `line_profiler`.
+In this course we will cover the usage of the line-level profiler `line_profiler`.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -205,7 +202,7 @@ Ideally, it should take no more than a few minutes to run the profiled test-case
 
 <!-- For example -->
 <!-- I don't really like this paragraph -->
-For example, you may have a model which normally simulates a year in hourly time steps.
+For example, you may have a model which normally simulates a year in hourly time-steps.
 It would be appropriate to begin by profiling the simulation of a single day.
 If the model scales over time, such as due to population growth, it may be pertinent to profile a single day later into a simulation if the model can be resumed or configured.
 A larger population is likely to amplify any bottlenecks that scale with the population, making them easier to identify.

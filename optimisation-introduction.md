@@ -18,40 +18,115 @@ exercises: 0
 
 ## Introduction
 
-<!-- Changing the narrative: you'd better learn how to write a good code an what are the good practice -->
-Think about optimisation as the first step on your journey to writing high-performance code.
-It’s like a race: the faster you can go without taking unnecessary detours, the better. 
-Code optmisation is all about understanding the principles of efficiency in Python and being conscious of how small changes can yield massive improvements.
-  
+<!-- Enable you to look at hotspots identified by compiler, identify whether it's efficient -->
+Now that you're able to find the most expensive components of your code with profiling, we can think about ways to improve it.
+However, the best way to do this will depend a lot on your specific code! For example, if your code is spending 60 seconds waiting to download data files and then 1 second to analyse that data, then optimizing your data analysis code won’t make much of a difference.
+We'll talk briefly about some of these external bottlenecks at the end. For now, we’ll assume that you’re not waiting for anything else and we'll look at the performance of your code.
+
 <!-- Necessary to understand how code executes (to a degree) -->
-These are the first steps in code optimisation: making better choices as you write your code and have an understanding of what a computer is doing to execute it.
+In order to optimise code for performance, it is necessary to have an understanding of what a computer is doing to execute it.
 
 <!-- Goal is to give you a high level understanding of how your code executes. You don't need to be an expert, even a vague general understanding will leave you in a stronger position. -->
-A high-level understanding of how your code executes, such as how Python and the most common data-structures and algorithms are implemented, can help you identify suboptimal approaches when programming. If you have learned to write code informally out of necessity, to get something to work, it's not uncommon to have collected some bad habits along the way.
+A high-level understanding of how your code executes, such as how Python and the most common data-structures and algorithms are implemented, can help you identify suboptimal approaches when programming. If you have learned to write code informally out of necessity, to get something to work, it's not uncommon to have collected some "unpythonic" habits along the way that may harm your code's performance.
+
+<!-- This should be considered good practice that you can implement when first writing your code. -->
+These are the first steps in code optimisation, and knowledge you can put into practice by making more informed choices as you write your code and after profiling it.
 
 <!-- This is largely high-level/abstract knowledge applicable to the vast majority of programming languages, applies even more strongly if using compiled Python features like numba -->
 The remaining content is often abstract knowledge, that is transferable to the vast majority of programming languages. This is because the hardware architecture, data-structures and algorithms used are common to many languages and they hold some of the greatest influence over performance bottlenecks.
 
-## Optimising code from scratch: trade-off between performance and maintainability
+## Performance vs Maintainability
 
-> Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. We should forget about small efficiencies, say about 97% of the time: **premature optimisation is the root of all evil**. Yet we should not pass up our opportunities in that critical 3%. - Donald Knuth
+> Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. We should forget about small efficiencies, say about 97% of the time: **premature optimization is the root of all evil**. Yet we should not pass up our opportunities in that critical 3%. - Donald Knuth
 
-This classic quote among computer scientists emphasizes the importance of considering both performance and maintainability when optimizing code. While advanced optimizations may boost performance, they often come at the cost of making the code harder to understand and maintain. Even if you're working alone on private code, your future self should be able to easily understand the implementation. Hence, when optimizing, always weigh the potential impact on both performance and maintainability.
+This classic quote among computer scientists emphasises the importance of considering both performance and maintainability when optimising code and prioritising your optimisations.
 
-This doesn't mean you should ignore performance when initially writing code. Choosing the right algorithms and data structures, as we’ve discussed in this course, is essential. However, there's no need to obsess over micro-optimizing every tiny component of your code—focus on the bigger picture.
+While advanced optimisations may boost performance, they often come at the cost of making the code harder to understand and maintain. Even if you're working alone on private code, your future self should be able to easily understand the implementation. Hence, when optimising, always weigh the potential impact on both performance and maintainability. While this course does not cover most advanced optimisations, you may already be familiar with and using some.
 
-## Ensuring Reproducible Results when optimising an existing code
+Profiling is a valuable tool for prioritising optimisations. Should effort be expended to optimise a component which occupies 1% of the runtime? Or would that time be better spent optimising the most expensive components?
+
+This doesn't mean you should ignore performance when initially writing code. Choosing the right algorithms and data structures, as we will discuss in this course, is good practice. However, there's no need to obsess over micro-optimising every tiny component of your code—focus on the bigger picture.
+
+## Performance of Python
+
+If you've read about different programming languages, you may have heard that there’s a difference between "interpreted" languages (like Python) and "compiled" languages (like C). You may have heard that Python is slow *because* it is an interpreted language.
+To understand where this comes from (and how to get around it), let's talk a little bit about how Python works.
+
+![Illustration of integers in C and Python.](episodes/fig/int-c-vs-py.png){alt="A diagram illustrating the difference between integers in C and Python. In C, the integer is a raw number in memory. In Python, it additionally contains a header with metadata."}
+<!-- Figure inspired by https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/#1.-Python-is-Dynamically-Typed-rather-than-Statically-Typed. -->
+
+In C, integers (or other basic types) are raw data in memory. It is up to the programmer to keep track of the data type.
+The compiler can then turn the source code directly into machine code. This allows the compiler to perform low-level optimisations that better exploit hardware nuance to achieve fast performance. This however comes at the cost of compiled software not being cross-platform.
+
+```C
+/* C code */
+int a = 1;
+int b = 2;
+int c = a + b;
+```
+
+In Python, everything is a complex object. The interpreter uses extra fields in the header to keep track of data types at runtime or take care of memory management.
+This adds a lot more flexibility and makes life easier for programmers. However, it comes at the cost of some overhead in both time and memory usage.
+
+```python
+# Python code
+a = 1
+b = 2
+c = a + b
+```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+Objects store both their raw data (like an integer or string) and some internal information used by the interpreter.
+We can see that additional storage space with `sys.getsizeof()`, which shows how many bytes an object takes up:
+
+```Python
+import sys
+
+sys.getsizeof("")  # 41
+sys.getsizeof("a")  # 42
+sys.getsizeof("ab")  # 43
+
+sys.getsizeof([])  # 56
+sys.getsizeof(["a"])  # 64
+
+sys.getsizeof(1)  # 28
+```
+
+(Note: For container objects (like lists and dictionaries) or custom classes, values returned by `getsizeof()` are implementation-dependent and may not reflect the actual memory usage.)
+
+:::::::::::::::::::::::::::::::::::::::::::::
+
+We effectively gain programmer performance by sacrificing some code performance. Most of the time, computers are "fast enough" so this is the right trade-off, as Donald Knuth said.
+
+However, there are the few other cases where code performance really matters. To handle these cases, Python has the capability to integrate with code written in lower-level programming language (like C, Fortran or Rust) under the hood.
+Some performance-sensitive libraries therefore perform a lot of the work in such low-level code, before returning a nice Python object back to you.
+(We’ll discuss NumPy in a later section; but many parts of the Python standard library also use this pattern.)
+
+Therefore, **it is often best to tell the interpreter/library at a high level *what you want*, and let it figure out *how to do it*.**
+
+That way, the interpreter/library is free to do all its work in the low-level code, and adds overhead only once, when it creates and returns a Python object in the end.
+This usually makes your code more readable, too: When someone else reads your code, they can see exactly *what you want to do*, without getting overwhelmed by overly detailed step-by-step instructions.
+
+
+## Ensuring Reproducible Results
 
 <!-- This is also good practice when optimising your code, to ensure mistakes aren't made -->
-When optimizing existing code, you're often making speculative changes, which can lead to subtle mistakes. To ensure that your optimizations are actually improving the code without introducing errors, it's crucial to have a solid strategy for checking that the results remain correct.
+When optimising existing code, you're often making speculative changes, which can lead to subtle mistakes. To ensure that your optimisations aren't also introducing errors, it's crucial to have a strategy for checking that the results remain correct.
 
-Testing should already be an integral part of your development process. It helps clarify expected behavior, ensures new features are working as intended, and protects against unintended regressions in previously working functionality. Always verify your changes through testing to ensure that the optimizations don’t compromise the correctness of your code.
+Testing should already be an integral part of your development process. It helps clarify expected behaviour, ensures new features are working as intended, and protects against unintended regressions in previously working functionality. Always verify your changes through testing to ensure that the optimisations don’t compromise the correctness of your code.
 
 ## pytest Overview
 
-There are a plethora of methods for testing code. Most Python developers use the testing package [pytest](https://docs.pytest.org/en/latest/), it's a great place to get started if you're new to testing code. Tests should be created within a project's testing directory, by creating files named with the form `test_*.py` or `*_test.py`. pytest looks for these files, when running the test suite. Within the created test file, any functions named in the form `test*` are considered tests that will be executed by pytest. The `assert` keyword is used, to test whether a condition evaluates to `True`.
+There are a plethora of methods for testing code. Most Python developers use the testing package [pytest](https://docs.pytest.org/en/latest/), it's a great place to get started if you're new to testing code.
 
 Here's a quick example of how a test can be used to check your function's output against an expected value.
+
+Tests should be created within a project's testing directory, by creating files named with the form `test_*.py` or `*_test.py`. pytest looks for file names with these patterns when running the test suite.
+
+Within the created test file, any functions named in the form `test*` are considered tests that will be executed by pytest.
+
+The `assert` keyword is used, to test whether a condition evaluates to `True`.
 
 ```python
 # file: test_demonstration.py

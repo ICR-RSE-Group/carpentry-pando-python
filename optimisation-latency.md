@@ -1,84 +1,38 @@
 ---
-title: "Understanding Memory"
+title: "Understanding Latency"
 teaching: 30
 exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How does a CPU look for a variable it requires?
-- What impact do cache lines have on memory accesses?
-- Why is it faster to read/write a single 100mb file, than 100 1mb files?
+- Why is it faster to read/write a single 100 MB file, than 100 files of 1 MB each?
+- How many orders of magnitude slower are disk accesses than RAM?
+- What's the cost of creating a list?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Able to explain, at a high-level, how memory accesses occur during computation and how this impacts optimisation considerations.
 - Able to identify the relationship between different latencies relevant to software.
+- Demonstrate how to implement parallel network requests.
+- Justify the re-use of existing variables over creating new ones.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Accessing Variables
-
-The storage and movement of data plays a large role in the performance of executing software.
-
-<!-- Brief summary of hardware -->
-Modern computers have a single CPU with multiple cores, each capable of working on tasks at the same time. Data used by programs is stored in RAM, which is faster than hard drives or solid-state drives. However, the CPU has even faster memory called caches to access frequently used data quickly.
-
-![An annotated photo of a computer's hardware.](episodes/fig/annotated-motherboard.jpg){alt="An annotated photo of inside a desktop computer's case. The CPU, RAM, power supply, graphics cards (GPUs) and harddrive are labelled."}
-
-<!-- Read/operate on variable ram->cpu cache->registers->cpu -->
-How the CPU Accesses Data?
-When the CPU needs to use a variable, it follows these steps:
-
-1) Registers: First, the CPU checks its own small, super-fast storage (registers). But it only has room for about 32 variables, so it usually doesn’t find the data here.
-2) L1 Cache: Next, the CPU looks in the L1 cache. It’s small (64 KB per core) and fast, but it only stores data for a single core.
-3) L2 Cache: If the variable isn’t in L1, it checks the larger L2 cache, which is shared by several cores. It’s slower than L1 but still faster than RAM.
-4) L3 Cache: If the variable isn’t in L2, the CPU checks the L3 cache, which is shared by all cores. It’s slower than L2 but bigger.
-5) RAM: If the variable is still not found, the CPU fetches it from the much slower RAM.
-The faster the CPU finds the data in the cache, the quicker it can do the job. 
-This is why understanding how the cache works can help make things run faster.
-
-Cache Details:
-When the CPU pulls data from RAM, it loads not just the variable, but also a full 64-byte chunk of memory called a "cache line." 
-This chunk often contains nearby variables that might be needed soon. When new data is added to the cache, old data is pushed out.
-
-Because of this, reading a list of data that’s next to each other in memory (like 16 numbers in a row) is much faster than reading scattered data, since the CPU can keep more of it in the cache.
-To make programs run faster, related data should be stored next to each other in memory. 
-By working with this data while it's still in the cache, the CPU doesn’t have to go all the way to RAM, which is much slower.
-
-<!-- Latency/Throughput typically inversely proportional to capacity -->
-While you don’t need to know all the details of how memory works, it’s helpful to know that memory locality—keeping related data together and accessing it in chunks—is key to making programs run faster.
-![An abstract diagram showing the path data takes from disk or RAM to be used for computation.](episodes/fig/hardware.png){alt='An abstract representation of a CPU, RAM and Disk, showing their internal caches and the pathways data can pass.'}
-
-::::::::::::::::::::::::::::::::::::: callout
-
-Python as a programming language, does not give you enough control to carefully pack your variables in this manner (every variable is an object, so it's stored as a pointer that redirects to the actual data stored elsewhere).
-
-However all is not lost, packages such as `numpy` and `pandas` implemented in C/C++ enable Python users to take advantage of efficient memory accesses (when they are used correctly).
-
-:::::::::::::::::::::::::::::::::::::::::::::
-
-<!-- TODO python code example 
-```python
-
-```-->
 
 ## Accessing Disk
 
 <!-- Read data from a file it goes disk->disk cache->ram->cpu cache/s->cpu -->
-When accessing data on disk (or network), a very similar process is performed to that between CPU and RAM when accessing variables.
+When reading data from a file, it is first transferred from the disk to the disk cache and then to the RAM (the computer's main memory, where variables are stored).
+The latency to access files on disk is another order of magnitude higher than accessing normal variables.
 
-When reading data from a file, it transferred from the disk, to the disk cache, to the RAM.
-The latency to access files on disk is another order of magnitude higher than accessing RAM.
-
-As such, disk accesses similarly benefit from sequential accesses and reading larger blocks together rather than single variables.
+As such, disk accesses benefit from sequential accesses and reading larger blocks together rather than single variables.
 Python's `io` package is already buffered, so automatically handles this for you in the background.
 
-However before a file can be read, the file system on the disk must be polled to transform the file path to it's address on disk to initiate the transfer (or throw an exception).
+However before a file can be read, the file system on the disk must be polled to transform the file path to its address on disk to initiate the transfer (or throw an exception).
 
-Following the common theme of this episode, the cost of accessing randomly scattered files can be significantly slower than accessing a single larger file of the same size.
+Following the common theme of this episode, accessing randomly scattered files can be significantly slower than accessing a single larger file of the same size.
 This is because for each file accessed, the file system must be polled to transform the file path to an address on disk. 
 Traditional hard disk drives particularly suffer, as the read head must physically move to locate data.
 
@@ -87,7 +41,7 @@ Hence, it can be wise to avoid storing outputs in many individual files and to i
 This is even visible outside of your own code. If you try to upload/download 1 GB to HPC.
 The transfer will be significantly faster, assuming good internet bandwidth, if that's a single file rather than thousands.
 
-The below example code runs a small benchmark, whereby 10MB is written to disk and read back whilst being timed. In one case this is as a single file, and the other, 1000 file segments.
+The below example code runs a small benchmark, whereby 10MB is written to disk and read back whilst being timed. In one case this is as a single file, and in the other, 1000 file segments.
 
 ```python
 import os, time
@@ -152,13 +106,80 @@ Repeated runs show some noise to the timing, however the slowdown is consistentl
 You might not even be reading 1000 different files. You could be reading the same file multiple times, rather than reading it once and retaining it in memory during execution.
 An even greater overhead would apply.
 
+## Accessing the Network
+
+When transferring files over a network, similar effects apply. There is a fixed overhead for every file transfer (no matter how big the file), so downloading many small files will be slower than downloading a single large file of the same total size.
+
+Because of this overhead, downloading many small files often does not use all the available bandwidth. It may be possible to speed things up by parallelising downloads.
+
+```Python
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from timeit import timeit
+import requests  # install with `pip install requests`
+
+
+def download_file(url, filename):
+    response = requests.get(url)
+    with open(filename, 'wb') as f:
+        f.write(response.content)
+    return filename
+
+downloaded_files = []
+
+def sequentialDownload():
+    for mass in range(10, 20):
+        url = f"https://github.com/SNEWS2/snewpy-models-ccsn/raw/refs/heads/main/models/Warren_2020/stir_a1.23/stir_multimessenger_a1.23_m{mass}.0.h5"
+        f = download_file(url, f"seq_{mass}.h5")
+        downloaded_files.append(f)
+
+def parallelDownload():
+    # Initialise a pool of 6 threads to share the workload
+    pool = ThreadPoolExecutor(max_workers=6)
+    jobs = []
+    # Submit each download to be executed by the thread pool
+    for mass in range(10, 20):
+        url = f"https://github.com/SNEWS2/snewpy-models-ccsn/raw/refs/heads/main/models/Warren_2020/stir_a1.23/stir_multimessenger_a1.23_m{mass}.0.h5"
+        local_filename = f"par_{mass}.h5"
+        jobs.append(pool.submit(download_file, url, local_filename))
+
+    # Collect the results (and errors) as the jobs are completed
+    for result in as_completed(jobs):        
+        if result.exception() is None:
+            # handle return values of the parallelised function
+            f = result.result()
+            downloaded_files.append(f)
+        else:
+            # handle errors
+            print(result.exception())
+
+    pool.shutdown(wait=False)
+
+
+print(f"sequentialDownload: {timeit(sequentialDownload, globals=globals(), number=1):.3f} s")
+print(downloaded_files)
+downloaded_files = []
+print(f"parallelDownload: {timeit(parallelDownload, globals=globals(), number=1):.3f} s")
+print(downloaded_files)
+```
+
+Depending on your internet connection, results may vary significantly, but the parallel download will usually be quite a bit faster. Note also that the order in which the parallel downloads finish will vary.
+
+```output
+sequentialDownload: 3.225 s
+['seq_10.h5', 'seq_11.h5', 'seq_12.h5', 'seq_13.h5', 'seq_14.h5', 'seq_15.h5', 'seq_16.h5', 'seq_17.h5', 'seq_18.h5', 'seq_19.h5']
+parallelDownload: 0.285 s
+['par_11.h5', 'par_12.h5', 'par_15.h5', 'par_13.h5', 'par_10.h5', 'par_14.h5', 'par_16.h5', 'par_19.h5', 'par_17.h5', 'par_18.h5']
+```
+
 ## Latency Overview
 
 Latency can have a big impact on the speed that a program executes, the below graph demonstrates this. Note the log scale!
 
-![A graph demonstrating the wide variety of latencies a programmer may experience when accessing data.](episodes/fig/latency.png){alt="A horizontal bar chart displaying the relative latencies for L1/L2/L3 cache, RAM, SSD, HDD and a packet being sent from London to California and back. These latencies range from 1 nanosecond  to 140 milliseconds and are displayed with a log scale."}
+![A graph demonstrating the wide variety of latencies a programmer may experience when accessing data.](episodes/fig/latency.png){alt="A horizontal bar chart displaying the relative latencies for L1/L2/L3 cache, RAM, SSD, HDD and a packet being sent from London to California and back. These latencies range from 1 nanosecond to 140 milliseconds and are displayed with a log scale."}
 
-The lower the latency typically the higher the effective bandwidth. L1 and L2 cache have 1TB/s, RAM 100GB/s, SSDs upto 32 GB/s, HDDs upto 150MB/s. Making large memory transactions even slower.
+L1/L2/L3 caches are where your most recently accessed variables are stored inside the CPU, whereas RAM is where most of your variables will be found.
+
+The lower the latency typically the higher the effective bandwidth (L1 and L2 cache have 1&nbsp;TB/s, RAM 100&nbsp;GB/s, SSDs up to 32 GB/s, HDDs up to 150&nbsp;MB/s), making large memory transactions even slower.
 
 ## Memory Allocation is not Free
 
@@ -266,9 +287,8 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Sequential accesses to memory (RAM or disk) will be faster than random or scattered accesses.
-  - This is not always natively possible in Python without the use of packages such as NumPy and Pandas
 - One large file is preferable to many small files.
+- Network requests can be parallelised to reduce the impact of fixed overheads.
 - Memory allocation is not free, avoiding destroying and recreating objects can improve performance.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

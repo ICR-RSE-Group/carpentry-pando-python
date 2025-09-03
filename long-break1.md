@@ -1,5 +1,5 @@
 ---
-title: Lunch Break
+title: Break
 teaching: 0
 exercises: 0
 break: 60
