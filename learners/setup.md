@@ -37,6 +37,12 @@ pip install pytest snakeviz line_profiler[all] numpy pandas matplotlib
 
 To complete some of the exercises you will need to use a text-editor or Python IDE, so make sure you have your favourite available.
 
+We will be using also JupyterLab to demonstrate code during the course. To prepare, please install ipykernel and register your `py311_env` environment with JupyterLab by running the following commands:
+```sh
+pip install jupyterlab
+conda install ipykernel -y
+python -m ipykernel install --user --name py311_env --display-name py311_env
+```
 :::::::::::::: instructor
 
 As the instructor, you should additionally install the `shapely` package, which you may need for a brief demo during the episode on scientific Python packages.
