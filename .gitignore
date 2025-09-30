@@ -2,6 +2,7 @@
 episodes/*html
 site/*
 !site/README.md
+.ipynb_checkpoints
 
 # History files
 .Rhistory
