@@ -759,7 +759,7 @@ execution.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <ul>
 <li>What tools and techniques would be required?</li>
@@ -998,36 +998,36 @@ produce output to console similar to that shown below:</p>
 <col width="15%">
 <col width="85%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Column</th>
 <th>Definition</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>ncalls</code></td>
 <td>The number of times the given function was called.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>tottime</code></td>
 <td>The total time spent in the given function, excluding child function
 calls.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>percall</code></td>
 <td>The average tottime per function call
 (<code>tottime</code>/<code>ncalls</code>).</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>cumtime</code></td>
 <td>The total time spent in the given function, including child function
 calls.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>percall</code></td>
 <td>The average cumtime per function call
 (<code>cumtime</code>/<code>ncalls</code>).</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>filename:lineno(function)</code></td>
 <td>The location of the given function’s definition and it’s name.</td>
 </tr>
@@ -1335,7 +1335,7 @@ poor scaling so larger numbers take significantly longer to run.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <ul>
 <li>If a hotspot isn’t visible with the argument <code>1</code>, try
@@ -1353,7 +1353,7 @@ within the profile.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The hotspot only becomes visible when an argument of <code>5</code>
 or greater is passed.</p>
@@ -1413,7 +1413,7 @@ necessary to find the bottlenecks.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>It should be clear from the profile that the method
 <code>Grass::eaten()</code> (from <code>predprey.py:278</code>) occupies
@@ -1653,36 +1653,36 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <col width="15%">
 <col width="85%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Column</th>
 <th>Definition</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>Line #</code></td>
 <td>The line number of the relevant line within the file (specified
 above the table).</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Hits</code></td>
 <td>The total number of times the line was executed.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>Time</code></td>
 <td>The total time spent executing that line, including child function
 calls.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Per Hit</code></td>
 <td>The average time per call, including child function calls
 (<code>Time</code>/<code>Hits</code>).</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>% Time</code></td>
 <td>The time spent executing the line, including child function calls,
 relative to the other lines of the function.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Line Contents</code></td>
 <td>A copy of the line from the file.</td>
 </tr>
@@ -2869,7 +2869,7 @@ in Python?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Python strings have a lot of methods to perform common operations,
 like removing suffixes, replacing substrings, joining or splitting,
@@ -2884,7 +2884,7 @@ methods documentation</a> for a full list.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2949,7 +2949,7 @@ lot of low-level step-by-step instructions?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <!-- Typical cases might include reading data from a file, …, … TODO: more examples? -->
 <p>(Before you try to rewrite those parts of your code, use a profiler
@@ -4822,8 +4822,8 @@ objects can improve performance.</li>
   "url": "https://carpentries-incubator.github.io/pando-python/aio.html",
   "identifier": "https://carpentries-incubator.github.io/pando-python/aio.html",
   "dateCreated": "2024-02-01",
-  "dateModified": "2026-04-28",
-  "datePublished": "2026-04-28"
+  "dateModified": "2026-05-05",
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
